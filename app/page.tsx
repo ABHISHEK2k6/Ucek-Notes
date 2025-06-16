@@ -8,13 +8,7 @@ import { AiOutlineLoading } from "react-icons/ai";
 import { getModule } from "@/lib/data";
 import { useDataContext } from "@/lib/DataContext";
 
-type DeptPageProps = {
-  params: {
-    dept: string;
-  };
-};
-
-export default function Page({ params }: DeptPageProps) {
+export default function Page({ params }: { params: { dept: string } }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [recentModules, setRecentModules] = useState<
     { module: string; subject: string; sem: string; dept: string; url: string }[]
