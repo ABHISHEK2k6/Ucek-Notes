@@ -1,5 +1,4 @@
 "use client";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useState } from 'react';
 import { FaLaptopCode } from 'react-icons/fa6';
 import { BsCpuFill } from 'react-icons/bs';

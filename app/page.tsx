@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, Key } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Footer from "../components/footer";
@@ -107,7 +107,7 @@ export default function Home() {
     setLoading(false);
 
     response
-      .then((data: string | any[]) => {
+      .then((data: string[] | unknown[]) => {
         if (data.length === 0) {
           setErrorMsg(
             `No data found for ${dept} - Semester ${sem}, Subject: ${subject}, Module: ${module_}`
@@ -124,7 +124,7 @@ export default function Home() {
           subject: subject,
           module_: `Module ${module_}`,
           department: dept,
-          link: data[0][0],
+          link: Array.isArray(data[0]) ? data[0][0] : "",
         };
 
         // Add new search to beginning of array and limit to 5 items
@@ -143,7 +143,9 @@ export default function Home() {
         localStorage.setItem("recentSearches", JSON.stringify(updatedSearches));
         setRecentItems(updatedSearches);
 
-        window.open(data[0][0], "_blank");
+        if (Array.isArray(data[0]) && data[0][0]) {
+          window.open(data[0][0], "_blank");
+        }
       });
   }
 
@@ -165,7 +167,7 @@ export default function Home() {
     }, 3000); // Change placeholder every 3 seconds
 
     return () => clearInterval(interval);
-  }, [dept]);
+  }, [dept, departmentPlaceholders]);
 
   const getPlaceholderText = () => {
     if (!dept) return "Select department first";
