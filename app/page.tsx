@@ -83,7 +83,7 @@ export default function Home() {
                             No recent modules viewed.
                         </div>
                     ) : (
-                        recentModules.slice(0, 5).map((mod, i) => (
+                        recentModules.slice(0, 5).map((mod) => (
                             <Link
                                 key={mod.url}
                                 href={mod.url}

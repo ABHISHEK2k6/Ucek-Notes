@@ -1,5 +1,5 @@
 import _ from 'lodash';
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export class CSQL {
   constructor(private data: any[]) {}
 

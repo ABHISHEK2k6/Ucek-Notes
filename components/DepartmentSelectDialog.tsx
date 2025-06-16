@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { CSQL } from '@/lib/csql';
 import { FaLaptopCode } from 'react-icons/fa6';
 import { BsCpuFill } from 'react-icons/bs';
