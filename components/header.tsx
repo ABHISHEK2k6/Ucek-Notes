@@ -8,7 +8,7 @@ import { useRouter, usePathname } from "next/navigation";
 export default function Header() {
   const { setDept } = useDataContext();
   const departments = ["CSE", "ECE", "IT"];
-  const schemes = ["2020"];
+  const schemes = ["2020","2019"];
   const [scheme, setScheme] = useState<string>(schemes[0]);
   const pathname = usePathname();
   const router = useRouter();
