@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Footer from "../components/footer";
@@ -9,7 +9,7 @@ import { AiOutlineLoading } from "react-icons/ai";
 import { getModule } from "@/lib/data";
 import { useDataContext } from "@/lib/DataContext";
 
-export default function Home() {
+export default function Page({ params }: { params: { dept: string } }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [errorMsg, setErrorMsg] = useState<string>();
   const [loading, setLoading] = useState(false);
@@ -149,12 +149,12 @@ export default function Home() {
       });
   }
 
-  const departmentPlaceholders = {
+  const departmentPlaceholders = useMemo(() => ({
     CSE: ['s3 dsa mod1', 's5 os m2', 's4, dbms, module3'],
     ECE: ['s4, signals, mod2', 's3, circuits, mod1', 's5, control, mod2'],
     IT: ['s6, networks, mod3', 's4, webdev, mod1', 's5, security, mod2'],
     default: ['s2, subject, mod1', 's3, topic, mod2', 's4, course, mod3']
-  };
+  }), []);
 
   useEffect(() => {
     if (!dept) return;
