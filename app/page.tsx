@@ -1,4 +1,3 @@
-"use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -8,7 +7,7 @@ import { AiOutlineLoading } from "react-icons/ai";
 import { getModule } from "@/lib/data";
 import { useDataContext } from "@/lib/DataContext";
 
-export default function Page({}: { params: { dept: string } }) {
+export default function Page({ params }: { params: { dept: string } }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [recentModules, setRecentModules] = useState<
     { module: string; subject: string; sem: string; dept: string; url: string }[]
