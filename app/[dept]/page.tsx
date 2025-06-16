@@ -12,15 +12,41 @@ export default async function Dept({
 }) {
   const title = params.dept;
   const semesters = [1, 2, 3, 4, 5, 6, 7, 8];
+  const deptLower = title.toLowerCase();
 
   if (!["cse", "ece", "it"].includes(title.toLowerCase())) return notFound();
   const link = `/${title.toLowerCase()}`;
 
   return (
-    <div className="flex flex-col items-center w-full max-w-6xl px-2 sm:px-0 min-h-screen justify-center">
+    <div className="flex flex-col items-center w-full max-w-6xl px-2 sm:px-0 justify-center">
       <div className="flex flex-col items-center w-full max-w-4xl">
-        <div className="text-white text-2xl sm:text-3xl font-bold mb-8 sm:mb-14 text-center bg-black/40 px-4 sm:px-8 py-3 rounded-2xl backdrop-blur-md shadow-lg">
-          Select the Semester
+        <div className="w-full max-w-4xl mb-6 bg-black/60 rounded-xl p-5 shadow-md border-gray-700 border">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <div className="text-xl font-bold break-words">SELECT SEMESTER</div>
+              <div className="text-sm text-gray-300 mt-1 capitalize">
+                {deptLower.toUpperCase()}
+              </div>
+            </div>
+          </div>
+          {/* Breadcrumb Nav */}
+          <div className="w-full border-t border-gray-700 mt-6 pt-3 text-center text-gray-400 text-sm">
+            <nav className="text-sm text-gray-400" aria-label="Breadcrumb">
+              <ol className="list-reset flex flex-wrap justify-center">
+                <li>
+                  <Link href="/" className="hover:underline text-gray-300">
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <span className="mx-2">/</span>
+                </li>
+                <li className="text-gray-400 capitalize">
+                  {deptLower.toUpperCase()}
+                </li>
+              </ol>
+            </nav>
+          </div>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 w-full">
@@ -42,7 +68,7 @@ export default async function Dept({
                         viewBox="0 0 24 24"
                         stroke="currentColor"
                       >
-                        <rect x="3" y="4" width="18" height="18" rx="4" strokeWidth={2} stroke="currentColor" fill="none"/>
+                        <rect x="3" y="4" width="18" height="18" rx="4" strokeWidth={2} stroke="currentColor" fill="none" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 2v4M8 2v4M3 10h18" />
                       </svg>
                     </div>

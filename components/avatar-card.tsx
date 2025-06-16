@@ -1,33 +1,19 @@
-"use client";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { useMotionValue, useMotionTemplate, motion } from "framer-motion";
+"use client";
+import { useMotionValue } from "framer-motion";
 import React, { useState, useEffect } from "react";
+import { useMotionTemplate, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import type { MotionValue } from "framer-motion";
 
-// -----------------------------
-// Types
-// -----------------------------
-type AvatarCardProps = {
-  url: string;
+export const AvatarCard = ({
+    url,
+  className,
+}: {
+    url: string;
   className?: string;
-};
-
-
-type CardPatternProps = {
-  mouseX: MotionValue<number>;
-  mouseY: MotionValue<number>;
-  randomString: string;
-};
-
-
-type IconProps = React.SVGProps<SVGSVGElement>;
-
-// -----------------------------
-// AvatarCard Component
-// -----------------------------
-export const AvatarCard = ({ url, className }: AvatarCardProps) => {
+}) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -38,8 +24,7 @@ export const AvatarCard = ({ url, className }: AvatarCardProps) => {
     setRandomString(str);
   }, []);
 
-  function onMouseMove(e: React.MouseEvent<HTMLDivElement>) {
-    const { currentTarget, clientX, clientY } = e;
+  function onMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent<HTMLDivElement>) {
     const { left, top } = currentTarget.getBoundingClientRect();
     mouseX.set(clientX - left);
     mouseY.set(clientY - top);
@@ -51,7 +36,7 @@ export const AvatarCard = ({ url, className }: AvatarCardProps) => {
   return (
     <div
       className={cn(
-        "p-0.5 bg-transparent aspect-square flex items-center justify-center w-full h-full relative",
+        "p-0.5  bg-transparent aspect-square  flex items-center justify-center w-full h-full relative",
         className
       )}
     >
@@ -59,16 +44,15 @@ export const AvatarCard = ({ url, className }: AvatarCardProps) => {
         onMouseMove={onMouseMove}
         className="group/card rounded-3xl w-full relative overflow-hidden bg-transparent flex items-center justify-center h-full"
       >
-        <CardPattern mouseX={mouseX} mouseY={mouseY} randomString={randomString} />
+        <CardPattern
+          mouseX={mouseX}
+          mouseY={mouseY}
+          randomString={randomString}
+        />
         <div className="relative z-10 flex items-center justify-center">
-          <div className="relative h-44 w-44 rounded-full flex items-center justify-center text-white font-bold text-4xl">
-            <Image
-              alt="Profile Image"
-              src={url}
-              width={150}
-              height={150}
-              className="rounded-full z-20"
-            />
+          <div className="relative h-44 w-44  rounded-full flex items-center justify-center text-white font-bold text-4xl">
+           
+            <Image alt={"Profile Image"} src={url} width={150} height={150} className="rounded-full z-20"></Image>
           </div>
         </div>
       </div>
@@ -76,22 +60,23 @@ export const AvatarCard = ({ url, className }: AvatarCardProps) => {
   );
 };
 
-// -----------------------------
-// CardPattern Component
-// -----------------------------
-export function CardPattern({ mouseX, mouseY, randomString }: CardPatternProps) {
+export function CardPattern({ mouseX, mouseY, randomString }: {
+  mouseX: any;
+  mouseY: any;
+  randomString: string;
+}) {
   const maskImage = useMotionTemplate`radial-gradient(250px at ${mouseX}px ${mouseY}px, white, transparent)`;
   const style = { maskImage, WebkitMaskImage: maskImage };
 
   return (
     <div className="pointer-events-none">
-      <div className="absolute inset-0 rounded-2xl [mask-image:linear-gradient(white,transparent)] group-hover/card:opacity-50"></div>
+      <div className="absolute inset-0 rounded-2xl  [mask-image:linear-gradient(white,transparent)] group-hover/card:opacity-50 "></div>
       <motion.div
-        className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-500 to-blue-700 sm:opacity-0 opacity-50 group-hover/card:opacity-100 backdrop-blur-xl transition duration-500"
+        className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-500 to-blue-700 sm:opacity-0 opacity-50  group-hover/card:opacity-100 backdrop-blur-xl transition duration-500"
         style={style}
       />
       <motion.div
-        className="absolute inset-0 rounded-2xl sm:opacity-0 opacity-50 mix-blend-overlay group-hover/card:opacity-100"
+        className="absolute inset-0 rounded-2xl sm:opacity-0 opacity-50 mix-blend-overlay  group-hover/card:opacity-100"
         style={style}
       >
         <p className="absolute inset-x-0 text-xs h-full break-words whitespace-pre-wrap text-white font-mono font-bold transition duration-500">
@@ -102,11 +87,8 @@ export function CardPattern({ mouseX, mouseY, randomString }: CardPatternProps) 
   );
 }
 
-// -----------------------------
-// Utility
-// -----------------------------
-const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
+const characters =
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 export const generateRandomString = (length: number) => {
   let result = "";
   for (let i = 0; i < length; i++) {
@@ -115,10 +97,7 @@ export const generateRandomString = (length: number) => {
   return result;
 };
 
-// -----------------------------
-// Icon Component
-// -----------------------------
-export const Icon = ({ className, ...rest }: IconProps) => {
+export const Icon = ({ className, ...rest }: any) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

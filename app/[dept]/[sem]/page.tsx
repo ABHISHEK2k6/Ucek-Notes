@@ -47,9 +47,51 @@ export default function Page({ params }: { params: Promise<{ sem: string; dept: 
 
   return (
     <div className="flex flex-col justify-center items-center w-full px-2 sm:px-0">
-      <h1 className="text-white -mt-20 text-2xl sm:text-4xl font-bold mb-8 sm:mb-14 text-center bg-black/40 px-4 sm:px-8 py-3 sm:py-5 rounded-2xl shadow-lg backdrop-blur-md">
-        Select Subject
-      </h1>
+      {/* Responsive Header Section */}
+      <div className="w-full max-w-4xl mb-6 bg-black/60 rounded-xl p-5 shadow-md border-gray-700 border">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div className="text-xl font-bold break-words">SELECT SUBJECT</div>
+            <div className="text-sm text-gray-300 mt-1 capitalize">
+              {deptLower.toUpperCase()}
+            </div>
+          </div>
+          <div className="flex flex-col sm:items-end">
+            <div className="text-md font-medium">
+              Semester: <span className="font-bold">{semNumber}</span>
+            </div>
+          </div>
+        </div>
+        {/* Breadcrumb Nav */}
+        <div className="w-full border-t border-gray-700 mt-6 pt-3 text-center text-gray-400 text-sm">
+          <nav className="text-sm text-gray-400" aria-label="Breadcrumb">
+            <ol className="list-reset flex flex-wrap justify-center">
+              <li>
+                <Link href="/" className="hover:underline text-gray-300">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <span className="mx-2">/</span>
+              </li>
+              <li>
+                <Link
+                  href={`/${deptLower}`}
+                  className="hover:underline text-gray-300"
+                >
+                  {deptLower.toUpperCase()}
+                </Link>
+              </li>
+              <li>
+                <span className="mx-2">/</span>
+              </li>
+              <li className="text-gray-400 capitalize">
+                Semester {semNumber}
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8 w-full max-w-4xl items-stretch">
         {subjects.map((sub, index) => (

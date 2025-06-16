@@ -28,7 +28,7 @@ export function getModules(dept: string, sem: string, subject: string) {
     );
 
   return getData(url).catch(error => {
-    console.error("Fetch failed:", error); 
+    console.error("Fetch failed:", error);
     return [];
   });
 }
@@ -50,3 +50,11 @@ export function getSubjects(dept: string, sem: string) {
       return [];
     });
 }
+
+export type Note = {
+  Module: string;
+  Subject: string;
+  File: string;
+  Title: string;
+  Scheme?: string;
+};

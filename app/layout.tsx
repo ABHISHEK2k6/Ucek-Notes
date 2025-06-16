@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import { DataProvider } from "@/lib/DataContext";
 
 export const metadata: Metadata = {
   title: "Notes UCEK",
@@ -16,14 +17,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg">
-        <Header />
-        <div className="min-h-screen text-white flex flex-col justify-center items-center p-6 bg-no-repeat bg-cover bg-center bg-[url('https://random-image-pepebigotes.vercel.app/api/random-image')] backdrop-brightness-50 bg-black/50">
-          <div className="absolute inset-0 -z-10">
-            <div className="w-full h-full bg-[url('https://random-image-pepebigotes.vercel.app/api/random-image')] bg-no-repeat bg-cover bg-center sepia-50 brightness-75 "></div>
+        <DataProvider>
+          <Header />
+          <div className="min-h-screen text-white flex flex-col justify-center items-center p-6 bg-no-repeat bg-cover bg-center bg-[url('https://random-image-pepebigotes.vercel.app/api/random-image')] backdrop-brightness-50 bg-black/50">
+            <div className="absolute inset-0 -z-10">
+              <div className="w-full h-full bg-[url('https://random-image-pepebigotes.vercel.app/api/random-image')] bg-no-repeat bg-cover bg-center sepia-50 brightness-75 "></div>
+            </div>
+            {children}
           </div>
-          {children}
-        </div>
-        <Footer />
+          <Footer />
+        </DataProvider>
       </body>
     </html>
   );

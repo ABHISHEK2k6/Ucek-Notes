@@ -93,7 +93,7 @@ export default function Home() {
                             >
                                 <div>
                                     <div className="text-md sm:text-lg font-bold capitalize">
-                                        {mod.subject} - Module {mod.module}
+                                        {mod.subject} - {mod.module}
                                     </div>
                                     <div className="text-sm text-gray-300 mt-1 uppercase">
                                         {mod.dept} | Sem {mod.sem}
