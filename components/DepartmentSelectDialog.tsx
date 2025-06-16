@@ -1,9 +1,11 @@
 "use client";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useState } from 'react';
 import { CSQL } from '@/lib/csql';
 import { FaLaptopCode } from 'react-icons/fa6';
 import { BsCpuFill } from 'react-icons/bs';
 import { IoPlanetSharp } from 'react-icons/io5';
+
 
 interface DepartmentSelectDialogProps {
   isOpen: boolean;
